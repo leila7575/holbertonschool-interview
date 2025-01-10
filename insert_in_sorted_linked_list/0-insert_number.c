@@ -25,6 +25,7 @@ new->next = NULL;
 
 if (*head == NULL || (*head)->n >= new->n)
 {
+new->next = *head;
 *head = new;
 }
 else
