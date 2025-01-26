@@ -9,9 +9,13 @@ def minOperations(n):
     """Calculates the minimum number of operations to obtain nH characters."""
     if n < 2:
         return 0
-
-    operations = 0
-    factors = factorint(n)
-    for factor, exponent in factors.items():
-        operations += factor * exponent
-    return operations
+    prime_factors = []
+    factor = 2
+    while factor**2.0 <= n:
+        while n % factor == 0:
+            prime_factors.append(factor)
+            n //= factor
+        factor += 1
+    if n > 1:
+        prime_factors.append(n)
+    return sum(prime_factors)
