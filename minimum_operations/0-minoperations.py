@@ -2,9 +2,6 @@
 """This module contains the function minOperations."""
 
 
-from sympy import factorint
-
-
 def minOperations(n):
     """Calculates the minimum number of operations to obtain nH characters."""
     if n < 2:
