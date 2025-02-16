@@ -1,23 +1,17 @@
 #!/usr/bin/python3
 """Reads stdin line by line and computes metrics."""
 
-import sys
+from sys import stdin
 
-total_size = 0
-status_codes = {200, 301, 400, 401, 403, 404, 405, 500}
-status_code_number = {}
-line_number = 0
+if __name__ == "__main__":
+    total_size = 0
+    status_codes = {200, 301, 400, 401, 403, 404, 405, 500}
+    status_code_number = {}
+    line_number = 0
 
-def print_stats():
-    """Prints statistics."""
-    print(f"File size: {total_size}")
-    for i in sorted(status_code_number.keys()):
-        print(f"{i}: {status_code_number[i]}")
-
-try:
-    for line in sys.stdin:
-        elements = line.split()
-
+    try:
+        for line in sys.stdin:
+            elements = line.split()
 
         if len(elements) < 7:
             continue
@@ -36,10 +30,14 @@ try:
         line_number += 1
 
         if line_number % 10 == 0:
-            print_stats()
+            print(f"File size: {total_size}")
+            for i in sorted(status_code_number.keys()):
+                print(f"{i}: {status_code_number[i]}")
 
-except KeyboardInterrupt:
-    pass
+	except KeyboardInterrupt:
+    	pass
 
-finally:
-    print_stats()  
+	finally:
+		print(f"File size: {total_size}")
+		for i in sorted(status_code_number.keys()):
+			print(f"{i}: {status_code_number[i]}")  
