@@ -3,7 +3,7 @@
 
 import sys
 
-if name == "main":
+if __name__ == "__main__":
     total_size = 0
     status_codes = {200, 301, 400, 401, 403, 404, 405, 500}
     status_code_counts = {code: 0 for code in status_codes}
