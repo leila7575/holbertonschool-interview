@@ -13,8 +13,8 @@ if __name__ == "__main__":
         for line in sys.stdin:
             elements = line.split()
 
-            if len(elements) < 9:
-                continue
+            if len(elements) != 9:
+                pass
 
             try:
                 file_size = int(elements[-1])
