@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Reads stdin line by line and computes metrics."""
+
 import sys
 
 
@@ -35,6 +36,6 @@ except KeyboardInterrupt:
 
 finally:
     print(f"File size: {total_size}")
-    for i in sorted_status_code:
+    for i in sorted(status_code_number.keys()):
         print(f"{i}: {status_code_number[status_code]}")
     raise
