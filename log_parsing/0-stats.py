@@ -13,8 +13,6 @@ if __name__ == "__main__":
         for line in sys.stdin:
             elements = line.split()
 
-            if len(elements) < 7:
-                continue
             try:
                 file_size = int(elements[-1])
                 status_code = int(elements[-2])
