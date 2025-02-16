@@ -13,7 +13,7 @@ if __name__ == "__main__":
         for line in sys.stdin:
             elements = line.split()
 
-            if len(elements) < 2:
+            if len(elements) < 9:
                 continue
 
             try:
