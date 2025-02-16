@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Reads stdin line by line and computes metrics."""
 
-from sys import stdin
+import sys
 
 if __name__ == "__main__":
     total_size = 0
@@ -13,31 +13,32 @@ if __name__ == "__main__":
         for line in sys.stdin:
             elements = line.split()
 
-        if len(elements) < 7:
-            continue
+            if len(elements) < 7:
+                continue
+            try:
+                file_size = int(elements[-1])
+                status_code = int(elements[-2])
+            except ValueError:
+                continue
 
-        try:
-            file_size = int(elements[-1])
-            status_code = int(elements[-2])
-        except ValueError:
-            continue 
+            total_size += file_size
 
-        total_size += file_size
+            if status_code in status_codes:
+                status_code_number[status_code] = (
+                    status_code_number.get(status_code, 0) + 1
+                )
 
-        if status_code in status_codes:
-            status_code_number[status_code] = status_code_number.get(status_code, 0) + 1
+            line_number += 1
 
-        line_number += 1
+            if line_number % 10 == 0:
+                print(f"File size: {total_size}")
+                for i in sorted(status_code_number.keys()):
+                    print(f"{i}: {status_code_number[i]}")
 
-        if line_number % 10 == 0:
-            print(f"File size: {total_size}")
-            for i in sorted(status_code_number.keys()):
-                print(f"{i}: {status_code_number[i]}")
+    except KeyboardInterrupt:
+        pass
 
-	except KeyboardInterrupt:
-    	pass
-
-	finally:
-		print(f"File size: {total_size}")
-		for i in sorted(status_code_number.keys()):
-			print(f"{i}: {status_code_number[i]}")  
+    finally:
+        print(f"File size: {total_size}")
+        for i in sorted(status_code_number.keys()):
+            print(f"{i}: {status_code_number[i]}")
