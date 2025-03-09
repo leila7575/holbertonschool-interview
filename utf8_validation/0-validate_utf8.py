@@ -6,6 +6,7 @@ def validUTF8(data):
     """Checks if data set presents valid UTF_8 encoding."""
     bytes_number = 0
     for byte in data:
+        byte = byte & 0xFF
         if bytes_number:
             if byte >> 6 != 0b10:
                 return False
