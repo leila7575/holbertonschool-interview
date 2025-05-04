@@ -44,8 +44,8 @@ void heap_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	for (size_t i = (size / 2) - 1; i-- > 0;)
-		heapify(array, size, size, i);
+	for (ssize_t i = (ssize_t)(size / 2) - 1; i >= 0; i--)
+        heapify(array, size, size, i);
 
 	for (size_t i = size - 1; i > 0; i--)
 	{
