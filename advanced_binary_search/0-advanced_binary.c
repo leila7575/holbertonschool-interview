@@ -4,45 +4,40 @@
 
 /**
  * binary_search - recursive binary search,
- * searches for value and returns its index in sorted array of integers
  *@array: pointer to first element to array to be searched in
  * @left: first element of subarray being searched in
  * @right: last element of subarray being searched in
  * @value: value to be searched for in array
+ * Return: index of value, -1 if value not found in array
  */
 int binary_search(int *array, int left, int right, int value)
 {
-	if (right >= left)
+	if (left > right)
+		return (-1);
+
+	int middle = left + (right - left) / 2;
+
+	printf("Searching in array: ");
+	for (int i = left; i <= right; i++)
 	{
-		int middle = left + (right - left) / 2;
-
-		printf("Searching in array: ");
-		for (int i = left; i <= right; i++)
-		{
-			if (i == left)
-				printf("%d", array[i]);
-			else
-				printf(", %d", array[i]);
-		}
-		printf("\n");
-
-		if (array[middle] == value)
-		{
-			if (middle == left || array[middle - 1] != value)
-				return (middle);
-			else
-				return (binary_search(array, left, middle - 1, value));
-		}
-		else if (array[middle] > value)
-		{
-			return (binary_search(array, left, middle - 1, value));
-		}
+		if (i == left)
+			printf("%d", array[i]);
 		else
-		{
-			return (binary_search(array, middle + 1, right, value));
-		}
+			printf(", %d", array[i]);
 	}
-	return (-1);
+	printf("\n");
+
+	if (array[middle] == value && (middle == left || array[middle - 1] != value))
+		return (middle);
+
+	if (array[middle] >= value)
+	{
+		return (binary_search(array, left, middle - 1, value));
+	}
+	else
+	{
+		return (binary_search(array, middle + 1, right, value));
+	}
 }
 
 /**
