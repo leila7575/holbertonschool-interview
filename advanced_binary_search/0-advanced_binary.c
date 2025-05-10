@@ -30,7 +30,8 @@ int binary_search(int *array, int left, int right, int value)
 		{
 			if (middle == left || array[middle - 1] != value)
 				return (middle);
-			return (binary_search(array, left, middle - 1, value));
+			else
+				return (binary_search(array, left, middle, value));
 		}
 		else if (array[middle] > value)
 		{
