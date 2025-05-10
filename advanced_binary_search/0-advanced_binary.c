@@ -30,13 +30,13 @@ int binary_search(int *array, int left, int right, int value)
 	if (array[middle] == value && (middle == left || array[middle - 1] != value))
 		return (middle);
 
-	if (array[middle] >= value)
+	if (array[middle] < value)
 	{
-		return (binary_search(array, left, middle - 1, value));
+		return (binary_search(array, middle + 1, right, value));
 	}
 	else
 	{
-		return (binary_search(array, middle + 1, right, value));
+		return (binary_search(array, left, middle, value));
 	}
 }
 
