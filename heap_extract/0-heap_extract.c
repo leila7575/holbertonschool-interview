@@ -19,7 +19,7 @@ void swap(heap_t *node1, heap_t *node2)
 /**
  * heapify_down - maintains Max Heap property
  * @node: start node for heapify down
- * Returns: pointer to node after heapify down
+ * Return: pointer to node after heapify down
  */
 heap_t *heapify_down(heap_t *node)
 {
@@ -46,7 +46,7 @@ heap_t *heapify_down(heap_t *node)
 /**
  * heap_size - computes size of binary heap
  * @root: pointer to the root node of the heap
- * Returns: heap size number of nodes of heap
+ * Return: heap size number of nodes of heap
  */
 static size_t heap_size(heap_t *root)
 {
@@ -59,7 +59,7 @@ static size_t heap_size(heap_t *root)
  * last_node - gets last level-order node
  * @root: pointer to the root node of the heap
  * @size: size of heap
- * Returns: pointer to last node
+ * Return: pointer to last node
  */
 static heap_t *last_node(heap_t *root, size_t size)
 {
@@ -97,7 +97,7 @@ static heap_t *last_node(heap_t *root, size_t size)
 /**
  * heap_extract - extracts the root node of a Max Binary Heap
  * @root: double pointer to the root node of the heap
- * Returns: value stored in root node, 0 on failure
+ * Return: value stored in root node, 0 on failure
  */
 int heap_extract(heap_t **root)
 {
