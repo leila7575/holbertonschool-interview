@@ -67,7 +67,7 @@ static heap_t *last_node(heap_t *root, size_t size)
 		return (NULL);
 
 	if (size == 1)
-		return ();
+		return (root);
 
 	heap_t *current = root;
 	size_t path = 1;
