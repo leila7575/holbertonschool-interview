@@ -6,9 +6,9 @@
  * @s: The string to convert.
  * Return: The integer value, or -1 on error.
  */
-int _atoi(char *s)
+long _atoi(char *s)
 {
-	int i = 0, result = 0;
+	long i = 0, result = 0;
 
 	if (!s || !s[0])
 		return (-1);
@@ -27,7 +27,7 @@ int _atoi(char *s)
  * print_number - Prints an integer using _putchar.
  * @n: The number to print.
  */
-void print_number(int n)
+void print_number(long n)
 {
 	if (n / 10)
 		print_number(n / 10);
