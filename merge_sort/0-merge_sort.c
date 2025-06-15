@@ -26,19 +26,30 @@ void merge(int *array, int *temp, size_t left, size_t middle, size_t right)
 	while (left_idx <= middle && right_idx <= right)
 	{
 		if (temp[left_idx] <= temp[right_idx])
-			array[temp_idx++] = temp[left_idx++];
+		{
+			array[temp_idx] = temp[left_idx++];
+			left_idx++;
+		}
 		else
-			array[temp_idx++] = temp[right_idx++];
+		{
+			array[temp_idx] = temp[right_idx];
+			right_idx++;
+		}
+		temp_idx++;
 	}
 
 	while (left_idx <= middle)
 	{
-		array[temp_idx++] = temp[left_idx++];
+		array[temp_idx] = temp[left_idx];
+		left_idx++;
+		temp_idx++;
 	}
 
 	while (right_idx <= right)
 	{
-		array[temp_idx++] = temp[right_idx++];
+		array[temp_idx] = temp[right_idx];
+		right_idx++;
+		temp_idx++;
 	}
 
 	printf("[Done]: ");
@@ -52,11 +63,11 @@ void merge(int *array, int *temp, size_t left, size_t middle, size_t right)
  * @left: left index
  * @right: right index
  */
-void merge_sort_subarray(int *array, int *temp, int left, int right)
+void merge_sort_subarray(int *array, int *temp, size_t left, size_t right)
 {
 	if (left < right)
 	{
-		size_t middle = left + (right - left) / 2;
+		size_t middle = left + (right - left + 1) / 2 - 1;
 
 		merge_sort_subarray(array, temp, left, middle);
 		merge_sort_subarray(array, temp, middle + 1, right);
@@ -72,8 +83,16 @@ void merge_sort_subarray(int *array, int *temp, int left, int right)
  */
 void merge_sort(int *array, size_t size)
 {
-	int *temp = malloc(sizeof(int) * size);
+	int *temp;
+	
+	if (array == NULL || size < 2)
+		return;
+
+	temp = malloc(sizeof(int) * size);
+	if (temp == NULL)
+		return;
 
 	merge_sort_subarray(array, temp, 0, size - 1);
+	
 	free(temp);
 }
