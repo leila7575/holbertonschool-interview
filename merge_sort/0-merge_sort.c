@@ -19,10 +19,8 @@ void merge(int *array, int *temp, size_t left, size_t middle, size_t right)
 	print_array(array + left, middle - left + 1);
 	printf("[right]: ");
 	print_array(array + middle + 1, right - middle);
-
 	for (size_t i = left; i <= right; i++)
 		temp[i] = array[i];
-
 	while (left_idx <= middle && right_idx <= right)
 	{
 		if (temp[left_idx] <= temp[right_idx])
@@ -37,21 +35,18 @@ void merge(int *array, int *temp, size_t left, size_t middle, size_t right)
 		}
 		temp_idx++;
 	}
-
 	while (left_idx <= middle)
 	{
 		array[temp_idx] = temp[left_idx];
 		left_idx++;
 		temp_idx++;
 	}
-
 	while (right_idx <= right)
 	{
 		array[temp_idx] = temp[right_idx];
 		right_idx++;
 		temp_idx++;
 	}
-
 	printf("[Done]: ");
 	print_array(array + left, right - left + 1);
 }
@@ -84,7 +79,7 @@ void merge_sort_subarray(int *array, int *temp, size_t left, size_t right)
 void merge_sort(int *array, size_t size)
 {
 	int *temp;
-	
+
 	if (array == NULL || size < 2)
 		return;
 
@@ -93,6 +88,5 @@ void merge_sort(int *array, size_t size)
 		return;
 
 	merge_sort_subarray(array, temp, 0, size - 1);
-	
 	free(temp);
 }
