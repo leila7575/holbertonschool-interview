@@ -27,7 +27,7 @@ void merge(int *array, int *temp, size_t left, size_t middle, size_t right)
 	{
 		if (temp[left_idx] <= temp[right_idx])
 		{
-			array[temp_idx] = temp[left_idx++];
+			array[temp_idx] = temp[left_idx];
 			left_idx++;
 		}
 		else
