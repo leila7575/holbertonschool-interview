@@ -13,6 +13,9 @@ List *create_node(char *val)
 {
 	List *node = malloc(sizeof(List));
 
+	if (!node)
+		return (NULL);
+
 	node->str = strdup(val);
 	if (!node->str)
 		return (NULL);
