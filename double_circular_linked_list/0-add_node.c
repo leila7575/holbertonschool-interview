@@ -14,6 +14,9 @@ List *create_node(char *val)
 	List *node = malloc(sizeof(List));
 
 	node->str = strdup(val);
+	if (!node->str)
+		return (NULL);
+
 	node->next = node;
 	node->prev = node;
 	return (node);
@@ -32,6 +35,9 @@ List *create_node(char *val)
 List *add_node_end(List **list, char *str)
 {
 	List *node = create_node(str);
+
+	if (!node)
+		return (NULL);
 
 	if (*list == NULL)
 	{
@@ -59,6 +65,9 @@ List *add_node_end(List **list, char *str)
 List *add_node_begin(List **list, char *str)
 {
 	List *node = create_node(str);
+
+	if (!node)
+		return (NULL);
 
 	if (*list == NULL)
 	{
