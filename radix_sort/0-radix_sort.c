@@ -65,6 +65,7 @@ void radix_sort(int *array, size_t size)
 	for (int digit_position = 1; max / digit_position > 0; digit_position *= 10)
 	{
 		digit_sort(array, size, digit_position);
-		print_array(array, size);
+		if (size > 1)
+			print_array(array, size);
 	}
 }
