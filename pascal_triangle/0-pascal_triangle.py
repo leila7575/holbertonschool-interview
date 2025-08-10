@@ -2,9 +2,6 @@
 """pascal's triangle function"""
 
 
-from math import factorial
-
-
 def pascal_triangle(n):
     """Returns list of lists integers representing pascal's triangle"""
     if n <= 0:
@@ -12,10 +9,10 @@ def pascal_triangle(n):
 
     pascal_triangle = []
     for nb_row in range(n):
-        row = []
-        for idx in range(nb_row + 1):
-            row.append(
-                factorial(nb_row) // (factorial(idx) * factorial(nb_row - idx))
-            )
+        coeff = 1
+        row = [coeff]
+        for idx in range(1, nb_row + 1):
+            coeff = coeff * (nb_row - idx + 1) // idx
+            row.append(coeff)
         pascal_triangle.append(row)
     return pascal_triangle
