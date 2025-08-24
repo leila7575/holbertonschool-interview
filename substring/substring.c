@@ -81,11 +81,11 @@ int check_substring(
  */
 int *find_substring(const char *s, const char **words, int nb_words, int *n)
 {
-	int s_len, word_len, substring_len, unique_count = 0,
-	int *required_counts, *temp_results, *results, i;
-	const char **unique_words;
+	 int s_len, word_len, substring_len, unique_count = 0;
+    int *required_counts, *temp_results, *results, i;
+    const char **unique_words;
+    *n = 0;
 
-	*n = 0;
 	if (!s || !words || nb_words <= 0)
 		return (NULL);
 
