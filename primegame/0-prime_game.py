@@ -2,37 +2,39 @@
 """Determines the winner of the prime game"""
 
 
-def prime_numbers(nums):
-    """Determines all prime numbers in an interval"""
-    booleans = []
-    prime_nb_count = 0
-    booleans = [True] * (nums + 1)
-    for i in range(2, int(nums ** 0.5) + 1):
-        if booleans[i]:
-            for j in range(i * i, nums + 1, i):
-                booleans[j] = False
-
-    for i in range(2, nums):
-        if booleans[i]:
-            prime_nb_count += 1
-
-    return prime_nb_count
+def prime_numbers(n):
+    """
+    Returns an array of prime numbers.
+    """
+    is_prime = [False, False] + [True] * (n - 1)
+    for i in range(2, int(n ** 0.5) + 1):
+        if is_prime[i]:
+            for j in range(i * i, n + 1, i):
+                is_prime[j] = False
+    prime_count = [0] * (n + 1)
+    for i in range(1, n + 1):
+        prime_count[i] = prime_count[i - 1] + (1 if is_prime[i] else 0)
+    return prime_count
 
 
 def isWinner(x, nums):
-    """Determines the winner of the prime game."""
-    first_player_count = 0
-    second_player_count = 0
-    for i in nums:
-        prime_nb_count = prime_numbers(i)
-        if prime_nb_count % 2 == 0:
-            second_player_count += 1
+    """
+    Determines the winner of the prime game.
+    """
+    if not nums or x < 1:
+        return None
+    n = max(nums)
+    prime_count = prime_numbers(n)
+    maria_wins = 0
+    ben_wins = 0
+    for num in nums:
+        if prime_count[num] % 2 == 1:
+            maria_wins += 1
         else:
-            first_player_count += 1
-
-    if first_player_count > second_player_count:
-        return 'Maria'
-    elif second_player_count > first_player_count:
-        return 'Ben'
+            ben_wins += 1
+    if maria_wins > ben_wins:
+        return "Maria"
+    elif ben_wins > maria_wins:
+        return "Ben"
     else:
         return None
